@@ -14,9 +14,7 @@ L.control
     position: "bottomright",
   })
   .addTo(mymap)
-  .addAttribution(
-    '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-  );
+  .addAttribution('&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>');
 
 // Initialize the marker cluster group
 var markers = L.markerClusterGroup();
@@ -46,8 +44,7 @@ fetch("/Meteorite_Landings.csv")
                 var relictNote = "";
                 var name = meteorite.name;
                 if (meteorite.nametype === "Relict") {
-                  relictNote =
-                    "<br><i>This meteorite is a relict, meaning it is heavily weathered and its original mineralogy has been significantly altered.</i>";
+                  relictNote = "<br><i>This meteorite is a relict, meaning it is heavily weathered and its original mineralogy has been significantly altered.</i>";
                   name = `<i>${meteorite.name}</i>`;
                 }
                 marker.bindPopup(`
@@ -68,6 +65,9 @@ fetch("/Meteorite_Landings.csv")
           } else {
             // All chunks have been processed, add the markers to the map
             mymap.addLayer(markers);
+
+            // Hide the loading screen
+            document.getElementById("loading-screen").style.display = "none";
           }
         }
 
@@ -78,15 +78,5 @@ fetch("/Meteorite_Landings.csv")
   });
 
 function isValidMeteorite(meteorite) {
-  return (
-    meteorite.reclat &&
-    meteorite.reclong &&
-    meteorite.name &&
-    meteorite.id &&
-    meteorite.nametype &&
-    meteorite.fall &&
-    meteorite["mass (g)"] &&
-    meteorite.year &&
-    meteorite.recclass
-  );
+  return meteorite.reclat && meteorite.reclong && meteorite.name && meteorite.id && meteorite.nametype && meteorite.fall && meteorite["mass (g)"] && meteorite.year && meteorite.recclass;
 }
