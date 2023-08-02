@@ -78,5 +78,5 @@ fetch("/Meteorite_Landings.csv")
   });
 
 function isValidMeteorite(meteorite) {
-  return meteorite.reclat && meteorite.reclong && meteorite.name && meteorite.id && meteorite.nametype && meteorite.fall && meteorite["mass (g)"] && meteorite.year && meteorite.recclass;
+  return meteorite.reclat && meteorite.reclong && meteorite.reclat !== "0.000000" && meteorite.reclong !== "0.000000" && meteorite.name && meteorite.id && meteorite.nametype && meteorite.fall && meteorite["mass (g)"] && meteorite.year && meteorite.recclass;
 }
